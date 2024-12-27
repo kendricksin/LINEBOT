@@ -1,0 +1,36 @@
+{
+    "location": {
+      "en": "We are located at Niphat Uthit 1, Hat Yai, Thailand 90110.",
+      "th": "ร้านตั้งอยู่ที่อาคาร Niphat Uthit 1, Hat Yai, Thailand 90110",
+      "ja": "当店はバンコクのXXXビル Niphat Uthit 1, Hat Yai, Thailand 90110。",
+      "zh": "我们位于曼谷XXX大厦 Niphat Uthit 1, Hat Yai, Thailand 90110。"
+    },
+    
+    "hours": {
+      "en": "We are open daily from 11:00 AM to 10:00 PM. Last order at 9:30 PM.",
+      "th": "เปิดทุกวัน 11:00 - 22:00 น. รับออเดอร์สุดท้าย 21:30 น.",
+      "ja": "営業時間は毎日11:00から22:00まで。ラストオーダーは21:30です。",
+      "zh": "我们每天营业时间为11:00至22:00。最后点餐时间为21:30。"
+    },
+    
+    "menu": {
+      "en": "We serve authentic Thai cuisine. Our specialties include Som Tam, Pad Thai, and Green Curry. View our full menu at: [website]",
+      "th": "เรามีอาหารไทยแท้ เมนูแนะนำ: ส้มตำ, ผัดไทย, และแกงเขียวหวาน ดูเมนูทั้งหมดได้ที่: [website]",
+      "ja": "本格的なタイ料理を提供しております。人気メニュー：ソムタム、パッタイ、グリーンカレー 詳細メニューは[website]でご覧いただけます。",
+      "zh": "我们供应正宗泰国菜。特色菜包括青木瓜沙拉、泰式炒河粉和绿咖喱。完整菜单请访问：[website]"
+    },
+    
+    "booking": {
+      "en": "For reservations, please provide: 1) Date and time 2) Number of guests 3) Your name and phone number",
+      "th": "สำหรับการจอง กรุณาแจ้ง: 1) วันและเวลา 2) จำนวนท่าน 3) ชื่อและเบอร์โทรศัพท์",
+      "ja": "ご予約の際は以下をお知らせください：1）日時 2）人数 3）お名前・電話番号",
+      "zh": "预订请提供：1）日期和时间 2）人数 3）姓名和电话号码"
+    },
+    
+    "parking": {
+      "en": "Parking is available at XXX Building B1-B2 floors. We validate parking for up to 2 hours.",
+      "th": "ที่จอดรถอยู่ที่อาคาร XXX ชั้น B1-B2 รับสิทธิ์จอดฟรี 2 ชั่วโมง",
+      "ja": "XXXビルB1-B2階に駐車場がございます。2時間まで駐車券を検印いたします。",
+      "zh": "停车位于XXX大厦B1-B2层。提供最多2小时的停车验证。"
+    }
+  }
