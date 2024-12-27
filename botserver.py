@@ -2,36 +2,37 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-import openai
+import google.generativeai as genai
 import os
+from dotenv import load_dotenv
+import time
 
 app = Flask(__name__)
+
+load_dotenv()
 
 # Your LINE channel credentials
 CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN')
 CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET')
 
-# Your OpenAI API key
-openai.api_key = os.getenv('OPENAI_API_KEY')
+# Configure Gemini API
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+genai.configure(api_key=GOOGLE_API_KEY)
+
+# Initialize Gemini model
+model = genai.GenerativeModel('gemini-pro')
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
-def get_gpt_response(prompt):
+def get_gemini_response(prompt):
     try:
-        # Create a chat completion using the ChatGPT API
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # You can change this to other models
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=500  # Adjust based on your needs
-        )
+        # Create a chat completion using the Gemini API
+        response = model.generate_content(prompt)
         # Extract the response text
-        return response.choices[0].message.content
+        return response.text
     except Exception as e:
-        print(f"Error in getting GPT response: {e}")
+        print(f"Error in getting Gemini response: {e}")
         return "Sorry, I encountered an error processing your request."
 
 @app.route("/callback", methods=['POST'])
@@ -53,16 +54,18 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    # Get the user's message
+    print("Message received from LINE")
     user_message = event.message.text
     
-    # Get response from ChatGPT
-    gpt_response = get_gpt_response(user_message)
+    print("Calling Gemini API...")
+    start_time = time.time()
+    gemini_response = get_gemini_response(user_message)
+    print(f"Gemini response received in {time.time() - start_time} seconds")
     
-    # Send the response back to the user
+    print("Sending response back to LINE")
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=gpt_response)
+        TextSendMessage(text=gemini_response)
     )
 
 if __name__ == "__main__":
